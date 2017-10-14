@@ -1,8 +1,59 @@
 # lab-weapp-server
 
+## ENV
+
+- CentOS 7.3
+- NodeJS v8.7.0
+- Mongo v2.6.12
+- domain `97374127.shawnyan.xyz`
+
+## Dependency
+
+- base
+```bash
+curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+yum install -y gcc-c++ make nodejs nginx mongodb-server mongodb
+node -v
+mongod --version
+mongo --version
+mkdir -pv /data/release
+git clone https://github.com/shawn0915/lab-weapp-server.git
+```
+
+- npm
+```bash
+cd /data/release/lab-weapp-server
+npm install pm2 --global
+npm install express --save
+npm install connect-mongo wafer-node-session --save
+npm install ws --save
+npm install co --save
+
+# pm2
+pm2 start app.js
+pm2 logs
+pm2 restart app
+```
+
 - nginx
 
 ssl
+
+- mongo
+```bash
+mkdir -p /data/mongodb
+mkdir -p /data/logs/mongodb
+
+mongod --fork --dbpath /data/mongodb --logpath /data/logs/mongodb/weapp.log
+
+netstat -ltp | grep 27017
+
+mongo
+> use weapp;
+switched to db weapp
+> db.createUser({ user: 'weapp', pwd: 'weapp-dev', roles: ['dbAdmin', 'readWrite']});
+Successfully added user: { "user" : "weapp", "roles" : [ "dbAdmin", "readWrite" ] }
+```
 
 - firewall
 
@@ -10,3 +61,8 @@ ssl
 firewall-cmd --add-service=https --permanent
 firewall-cmd --add-service=http --permanent
 ```
+
+
+## URL
+
+http://97374127.shawnyan.xyz:8765
