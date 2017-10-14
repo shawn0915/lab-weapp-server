@@ -79,3 +79,25 @@ firewall-cmd --add-port=8765/tcp
 http://97374127.shawnyan.xyz:8765
 https://97374127.shawnyan.xyz/
 ```
+
+## Game
+
+- Room.js
+
+处理游戏开始、计算结果、积分等逻辑
+
+- Player.js
+
+处理玩家加入游戏、选择出拳、通知其他玩家等逻辑
+
+- ComputerPlayer.js
+
+电脑玩家
+
+- Tunnel.js
+
+通过 WebSocket 信道来实现玩家的输入输出
+
+- HumanPlayer.js
+
+人类玩家
