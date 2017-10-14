@@ -12,7 +12,7 @@
 - base
 ```bash
 curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
-yum install -y gcc-c++ make nodejs nginx mongodb-server mongodb
+yum install -y gcc-c++ make nodejs nginx mongodb-server mongodb git
 node -v
 mongod --version
 mongo --version
@@ -37,12 +37,15 @@ pm2 restart app
 
 - nginx
 
-ssl
+ssl.conf
+
+在http的server里增加`rewrite ^(.*) https://$host$1 permanent;`
+
 
 - mongo
 ```bash
-mkdir -p /data/mongodb
-mkdir -p /data/logs/mongodb
+mkdir -pv /data/mongodb
+mkdir -pv /data/logs/mongodb
 
 mongod --fork --dbpath /data/mongodb --logpath /data/logs/mongodb/weapp.log
 
@@ -53,16 +56,23 @@ mongo
 switched to db weapp
 > db.createUser({ user: 'weapp', pwd: 'weapp-dev', roles: ['dbAdmin', 'readWrite']});
 Successfully added user: { "user" : "weapp", "roles" : [ "dbAdmin", "readWrite" ] }
+exit
 ```
 
 - firewall
 
 ```bash
+firewall-cmd --add-service=https
 firewall-cmd --add-service=https --permanent
+firewall-cmd --add-service=http
 firewall-cmd --add-service=http --permanent
+firewall-cmd --add-port=8765/tcp
 ```
 
 
 ## URL
 
+```
 http://97374127.shawnyan.xyz:8765
+https://97374127.shawnyan.xyz/
+```
