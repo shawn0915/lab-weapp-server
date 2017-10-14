@@ -16,14 +16,17 @@ yum install -y gcc-c++ make nodejs nginx mongodb-server mongodb git
 node -v
 mongod --version
 mongo --version
+nginx -v
 mkdir -pv /data/release
+cd /data/release
 git clone https://github.com/shawn0915/lab-weapp-server.git
 ```
 
 - npm
 ```bash
 cd /data/release/lab-weapp-server
-npm install pm2 --global
+#npm install pm2 --global
+npm install pm2 -g --registry=https://r.cnpmjs.org/
 npm install express --save
 npm install connect-mongo wafer-node-session --save
 npm install ws --save
