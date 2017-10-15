@@ -1,6 +1,7 @@
 {
     "name": "weapp",
     "version": "1.0.0",
+	"description": "lab-weapp-server-shawn",
     "dependencies": {
         "co": "^4.6.0",
         "connect-mongo": "^2.0.0",

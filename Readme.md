@@ -26,11 +26,14 @@ git clone https://github.com/shawn0915/lab-weapp-server.git
 ```bash
 cd /data/release/lab-weapp-server
 #npm install pm2 --global
-npm install pm2 -g --registry=https://r.cnpmjs.org/
-npm install express --save
-npm install connect-mongo wafer-node-session --save
-npm install ws --save
-npm install co --save
+#npm install pm2 -g --registry=https://r.cnpmjs.org/
+#npm install express --save
+#npm install connect-mongo wafer-node-session --save
+#npm install ws --save
+#npm install co --save
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install pm2 -g
+cnpm install
 
 # pm2
 pm2 start app.js
